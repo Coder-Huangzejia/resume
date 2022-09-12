@@ -1,28 +1,23 @@
 import { FC, memo, useMemo } from "react";
+import { FormStaticType, TechDataType } from "../../types/static";
+import './index.less'
 
 interface ResumeProps {
-  techData: any;
-  form: {
-    name: string;
-    mobile: string;
-    email: string;
-    school: string;
-    frontEndTime: string;
-    salary: string;
-  };
-  setVisible: (name: string) => void;
+  techData: TechDataType;
+  form: FormStaticType;
+  setVisible: (name: 'BasicDrawerVisible'|'techDrawerVisible') => void;
 }
 
 const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
-  const { name, mobile, email, school, frontEndTime, salary } = form;
+  const { name, mobile, email, school, frontEndTime, salary,github,blog,major } = form;
+  const {  webgl,frame,} = techData;
   const toolStr = useMemo(() => {
-    const { tools } = techData;
-    return tools
+    return techData.tools
       .filter((item) => item.select)
       .reduce((pre, item) => (pre ? pre + "/" + item.name : item.name), "");
   }, [techData]);
   return (
-    <div id="wrapper">
+    <div id="resume-wrapper">
       <div className="header" onClick={() => setVisible("BasicDrawerVisible")}>
         <div className="header-title">
           <span className="author-name">{name}</span>
@@ -40,7 +35,7 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
             <ul>
               <li>前端工作经验： {frontEndTime}</li>
               <li>期望薪资： {salary || "面议"}</li>
-              <li v-show="props.form.major">专业： {major}</li>
+              <li  style={{display:major?'block':'none'}}>专业： {major}</li>
             </ul>
           </div>
           <div className="clear-fix"></div>
@@ -62,27 +57,27 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
               ，掌握模块化思想和技术实现方案。
             </li>
             <li>
-              <span v-show="props.techData.webgl[0].select">
+              <span  style={{display:webgl[0].select?'block':'none'}}>
                 熟悉图形学和webgl，熟练使用threejs框架，
               </span>
-              <span v-show="props.techData.webgl[1].select">
+              <span style={{display:webgl[1].select?'block':'none'}}>
                 熟练canvas相关渲染及动画操作
               </span>
             </li>
-            <li v-show="props.techData.frame[2].select">
+            <li  style={{display:frame[2].select?'block':'none'}}>
               熟练掌握Axure，Photoshop、 illustrator
               等设计软件，能独立完成产品功能的交互界面设计
             </li>
-            <li v-show="props.techData.frame[1].select">
+            <li style={{display:frame[1].select?'block':'none'}}>
               熟练掌握React前端框架，会应用react生态常用工具，如redux/react-router/umi/dva。
             </li>
-            <li v-show="props.techData.frame[1].select">
+            <li style={{display:frame[1].select?'block':'none'}}>
               熟练使用React常用UI框架，如Ant Design。
             </li>
-            <li v-show="props.techData.frame[0].select">
+            <li  style={{display:frame[0].select?'block':'none'}}>
               熟练掌握Vue2和Vue3，会应用Vue生态常用工具，如vue-router/vuex。
             </li>
-            <li v-show="props.techData.frame[0].select">
+            <li  style={{display:frame[0].select?'block':'none'}}>
               熟练使用Vue常用UI框架，如Ant Design Pro/ElementUI。
             </li>
             <li>熟悉CSS预编译语言，掌握LESS/SASS预编译语言等</li>
@@ -206,8 +201,8 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
         <span className="long-line"></span>
         <div className="detail-list">
           <div className="info-left">
-            <span>博客： {form.blog}</span>
-            <span>github： {form.github}</span>
+            <span>博客： {blog}</span>
+            <span>github： {github}</span>
           </div>
 
           <div className="clear-fix"></div>
