@@ -2,7 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import BasicDrawer from "./components/BasicDrawer";
 import Resume from "./components/Resume/index";
 import TechDrawer from "./components/TechDrawer";
-import { DrawerVisibleType, FormStaticType, TechDataType } from "./types/static";
+import {
+  DrawerVisibleType,
+  FormStaticType,
+  TechDataType,
+} from "./types/static";
 
 export default function App() {
   const [formBasic, setFormBasic] = useState<FormStaticType>({
@@ -118,35 +122,53 @@ export default function App() {
   });
 
   const [drawerVisible, setDrawerVisible] = useState<DrawerVisibleType>({
-    BasicDrawerVisible: false,
+    basicDrawerVisible: false,
     techDrawerVisible: true,
   });
 
-  const setVisibleFn = useCallback((name: 'BasicDrawerVisible'|'techDrawerVisible') => {
-    setDrawerVisible((pre) => ({...pre, [name]: true}));
-  }, []);
-  const onChooseList=useCallback((type:'tools'|'webgl'|'frame'|'list',targetIndex:number)=>{
-    const res= techData[type].map((v,i)=>(i===targetIndex?{...v,select:!v.select}:v))
-    setTechData(pre=>({...pre,[type]:res}))
-  },[techData])
+  const handleOpenDrawer = useCallback(
+    (name: "basicDrawerVisible" | "techDrawerVisible") => {
+      setDrawerVisible((pre) => ({ ...pre, [name]: true }));
+    },
+    []
+  );
+  const handleCloseDrawer = useCallback(
+    (name: "basicDrawerVisible" | "techDrawerVisible") => {
+      setDrawerVisible((pre) => ({ ...pre, [name]: false }));
+    },
+    []
+  );
+  const onChooseList = useCallback(
+    (type: "tools" | "webgl" | "frame" | "list", targetIndex: number) => {
+      const res = techData[type].map((v, i) =>
+        i === targetIndex ? { ...v, select: !v.select } : v
+      );
+      setTechData((pre) => ({ ...pre, [type]: res }));
+    },
+    [techData]
+  );
   useEffect(() => {
     console.log(techData);
   }, [techData]);
 
   return (
     <>
-      <Resume setVisible={setVisibleFn} form={formBasic} techData={techData} />
-      <BasicDrawer
-        visible={drawerVisible.BasicDrawerVisible}
+      <Resume
+        setVisible={handleOpenDrawer}
         form={formBasic}
-        setVisible={(boolean:boolean) => (drawerVisible.BasicDrawerVisible = boolean)}
+        techData={techData}
+      />
+      <BasicDrawer
+        visible={drawerVisible.basicDrawerVisible}
+        form={formBasic}
+        setVisible={handleCloseDrawer}
       />
       <TechDrawer
         visible={drawerVisible.techDrawerVisible}
         techData={techData}
         onChooseList={onChooseList}
-        setVisible={(boolean:boolean) => (drawerVisible.techDrawerVisible = boolean)}
+        setVisible={handleCloseDrawer}
       />
     </>
   );
-};
+}
