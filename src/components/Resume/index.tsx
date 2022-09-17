@@ -4,11 +4,11 @@ import "./index.css";
 
 interface ResumeProps {
   techData: TechDataType;
-  form: FormStaticType;
+  formData: FormStaticType;
   setVisible: (name: "basicDrawerVisible" | "techDrawerVisible") => void;
 }
 
-const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
+const Resume: FC<ResumeProps> = memo(({ techData, formData, setVisible }) => {
   const {
     name,
     mobile,
@@ -19,7 +19,7 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
     github,
     blog,
     major,
-  } = form;
+  } = formData;
   const { webgl, frame } = techData;
   const toolStr = useMemo(() => {
     return techData.tools
@@ -181,17 +181,16 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
         <div className="self-evaluation">
           <span className="icon"></span>
           <span className="subtitle">自我评价</span>
-          <span className="long-line short-line"></span>
+          <span className="long-line"></span>
           <div className="detail-list">
             <ul>
-              <li>喜欢学习新东西，善于折腾</li>
-              <li>工作认真，细心，有很强的责任感</li>
-              <li>良好的语言沟通能力，能够积极主动交流以便解决问题</li>
-              <li>性格外向开朗，喜欢运动，喜欢打篮球，能够独立解决问题</li>
+              <li>注重代码质量，有代码洁癖</li>
+              <li>在保证一定工作效率的前提下不介意加班</li>
+              <li>良好的语言沟通能力，能够积极主动交流以便快速解决问题</li>
+              <li>对前端领域的知识有持续学习的动力，注重自身技术的提升</li>
             </ul>
           </div>
         </div>
-
         <div className="clear-fix"></div>
       </div>
       <div className="honor-reward">
@@ -200,10 +199,9 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
         <span className="long-line short-line"></span>
         <div className="detail-list">
           <ul>
-            <li>XXXXXXXXXXXXXXXXXXXX</li>
-            <li>XXXXXXXXXXXXXXXXXXXX</li>
-            <li>XXXXXXXXXXXXXXXXXXXX</li>
-            <li>XXXXXXXXXXXXXXXXXXXXX</li>
+            <li>大学英语四级/六级证书</li>
+            <li>高级软件设计师（软考证书）</li>
+            <li>PAT证书</li>
           </ul>
         </div>
       </div>
@@ -212,11 +210,10 @@ const Resume: FC<ResumeProps> = memo(({ techData, form, setVisible }) => {
         <span className="subtitle">博客</span>
         <span className="long-line"></span>
         <div className="detail-list">
-          <div className="info-left">
-            <span>掘金博客： {blog}</span>
-            <span>GitHub： {github}</span>
-          </div>
-
+          <ul>
+            <li>掘金博客： {blog}</li>
+            <li>GitHub： {github}</li>
+          </ul>
           <div className="clear-fix"></div>
         </div>
       </div>

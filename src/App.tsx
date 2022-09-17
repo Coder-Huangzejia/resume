@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { Button } from "antd";
+import { useCallback, useState } from "react";
 import BasicDrawer from "./components/BasicDrawer";
 import Resume from "./components/Resume/index";
 import TechDrawer from "./components/TechDrawer";
@@ -7,7 +8,8 @@ import {
   FormStaticType,
   TechDataType,
 } from "./types/static";
-
+import downloadPDF from "./util/html2pdf";
+import "./App.css";
 export default function App() {
   const [formBasic, setFormBasic] = useState<FormStaticType>({
     name: "一泽今天写bug了吗",
@@ -18,8 +20,8 @@ export default function App() {
     major: "计算机科学与技术（非相关专业可不填）",
     age: 25,
     salary: "25k（不填为面议）",
-    blog: "www.blog.com(没有可不填)",
-    github: "www.github.com(没有可不填)",
+    blog: "https://juejin.cn/user/2419405862219277(没有可不填)",
+    github: "https://github.com/3055859479(没有可不填)",
   });
 
   const [techData, setTechData] = useState<TechDataType>({
@@ -123,7 +125,7 @@ export default function App() {
 
   const [drawerVisible, setDrawerVisible] = useState<DrawerVisibleType>({
     basicDrawerVisible: false,
-    techDrawerVisible: true,
+    techDrawerVisible: false,
   });
 
   const handleOpenDrawer = useCallback(
@@ -147,15 +149,17 @@ export default function App() {
     },
     [techData]
   );
-  useEffect(() => {
-    console.log(techData);
-  }, [techData]);
+  const exportPDF = useCallback(() => {
+    const pdf = document.getElementById("resume-wrapper") as HTMLElement;
+    downloadPDF(pdf, "Web前端开发", false, () => {});
+  }, []);
 
+  const save = () => {};
   return (
     <>
       <Resume
         setVisible={handleOpenDrawer}
-        form={formBasic}
+        formData={formBasic}
         techData={techData}
       />
       <BasicDrawer
@@ -169,6 +173,19 @@ export default function App() {
         onChooseList={onChooseList}
         setVisible={handleCloseDrawer}
       />
+      <div className="operation-wrapper">
+        <Button type="link" shape="default" className="save-btn" onClick={save}>
+          保存简历
+        </Button>
+        <Button
+          type="link"
+          shape="default"
+          className="download-btn"
+          onClick={exportPDF}
+        >
+          生成简历
+        </Button>
+      </div>
     </>
   );
 }

@@ -62,7 +62,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
               </Col>
               <Col span="12">
                 <Item label="前端工作经验" name="frontEndTime">
-                  <Input placeholder="时间：1年" />
+                  <Input placeholder="时间：3年" />
                 </Item>
               </Col>
             </Row>
@@ -81,7 +81,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
             <Row gutter={16}>
               <Col span="12">
                 <Item label="年龄" name="age">
-                  <Input placeholder="请输入你的毕业学校" />
+                  <Input placeholder="请输入你的年龄" />
                 </Item>
               </Col>
               <Col span="12">
@@ -98,7 +98,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
               </Col>
               <Col span="12">
                 <Item label="github" name="github">
-                  <Input placeholder="请输入你的github网址" />
+                  <Input placeholder="请输入你的Github网址" />
                 </Item>
               </Col>
             </Row>

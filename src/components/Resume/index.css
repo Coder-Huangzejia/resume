@@ -40,9 +40,7 @@
 .person-info {
   margin-top: 1em;
 }
-.person-info .detail-list {
-  padding-left: 1.5em;
-}
+
 .person-info .detail-list span {
   display: block;
 }
@@ -206,8 +204,10 @@
 .person-info .detail-list .info-right {
   float: right;
 }
-.person-info .detail-list span {
+.person-info .detail-list ul {
   display: block;
+  padding: 0;
+  margin: 0;
 }
 .pro-skill {
   position: relative;
@@ -300,7 +300,7 @@
 }
 .honor-eva .self-evaluation {
   float: left;
-  width: 460px;
+  width: 800px;
   position: relative;
 }
 .honor-eva .self-evaluation .icon {
@@ -313,6 +313,11 @@
   padding: 0;
   margin: 0;
 }
+.honor-reward ul {
+  padding: 0;
+  margin: 0;
+}
+
 .clear-fix {
   clear: both;
 }
