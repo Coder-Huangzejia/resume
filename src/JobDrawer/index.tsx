@@ -21,7 +21,7 @@ const JobDrawer: FC<JobDrawerProps> = memo(
       <>
         <Drawer
           title="工作经历"
-          width="720"
+          width={720}
           visible={visible}
           key="jobDrawer"
           bodyStyle={{ paddingBottom: "80px" }}

@@ -21,7 +21,7 @@ const TechDrawer: FC<TechDrawerProps> = memo(
       <>
         <Drawer
           title="选择你的技术栈"
-          width="720"
+          width={720}
           visible={visible}
           key="techDrawer"
           bodyStyle={{ paddingBottom: "80px" }}

@@ -19,7 +19,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
       <>
         <Drawer
           title="基本信息"
-          width="720"
+          width={720}
           visible={visible}
           key="basicDrawer"
           bodyStyle={{ paddingBottom: "80px" }}

@@ -18,8 +18,8 @@ const WorkDrawer: FC<WorkDrawerProps> = memo(
     return (
       <>
         <Drawer
-          title="项目"
-          width="720"
+          title="工作项目"
+          width={720}
           key="workDrawer"
           visible={visible}
           bodyStyle={{ paddingBottom: "80px" }}
