@@ -21,22 +21,26 @@ import moment from "moment";
 import { cloneDeep } from "lodash";
 import WorkDrawer from "./components/WorkDrawer";
 export default function App() {
-  const [basicData, setBasicData] = useState<FormStaticType>({
-    name: "一泽今天写bug了吗",
-    mobile: "123456789",
-    email: "3055859479@qq.com",
-    frontEndTime: "2年",
-    school: "中南大学",
-    major: "计算机科学与技术",
-    age: 25,
-    salary: "面议",
-    blog: "https://juejin.cn/user/2419405862219277",
-    github: "https://github.com/3055859479",
-    reward:
-      "1. 大学英语四级/六级证书\n2. 高级软件设计师（软考证书）\n3. PAT证书",
-    evaluation:
-      "1. 注重代码质量，有代码洁癖\n2. 在保证一定工作效率的前提下不介意加班\n3. 良好的语言沟通能力，能够积极主动交流以便快速解决问题\n4. 对前端领域的知识有持续学习的动力，注重自身技术的提升\n",
-  });
+  const [basicData, setBasicData] = useState<FormStaticType>(() =>
+    localStorage.getItem("basicData")
+      ? JSON.parse(localStorage.getItem("basicData")!)
+      : {
+          name: "一泽今天写bug了吗",
+          mobile: "123456789",
+          email: "3055859479@qq.com",
+          frontEndTime: "2年",
+          school: "中南大学",
+          major: "计算机科学与技术",
+          age: 25,
+          salary: "面议",
+          blog: "https://juejin.cn/user/2419405862219277",
+          github: "https://github.com/3055859479",
+          reward:
+            "1. 大学英语四级/六级证书\n2. 高级软件设计师（软考证书）\n3. PAT证书",
+          evaluation:
+            "1. 注重代码质量，有代码洁癖\n2. 在保证一定工作效率的前提下不介意加班\n3. 良好的语言沟通能力，能够积极主动交流以便快速解决问题\n4. 对前端领域的知识有持续学习的动力，注重自身技术的提升\n",
+        }
+  );
 
   const [techData, setTechData] = useState<TechDataType>({
     tools: [
@@ -210,7 +214,12 @@ export default function App() {
   }, []);
 
   //TODO: 这里在考虑用不用useLocalStorage做，如果用其实没必要留这个保存按钮了！
-  const save = () => {};
+  const save = () => {
+    localStorage.setItem("basicData", JSON.stringify(basicData));
+    localStorage.setItem("jobData", JSON.stringify(jobData));
+    localStorage.setItem("techData", JSON.stringify(techData));
+    localStorage.setItem("workData", JSON.stringify(workData));
+  };
 
   return (
     <ConfigProvider locale={locale}>
