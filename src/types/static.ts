@@ -9,6 +9,8 @@ export interface FormStaticType {
   blog: string;
   major: string;
   age: number;
+  evaluation:string;
+  reward:string
 }
 export interface TechDataItemType {
   name: string;
@@ -20,7 +22,18 @@ export interface TechDataType {
   list: TechDataItemType[];
   frame: TechDataItemType[];
 }
+export interface JobDataItemType {
+  companyName: string;
+  dueTime: string;
+  department: string;
+  position: string;
+  jobDescription:string;
+  startTime:string;
+  dimission:boolean
+}
 export interface DrawerVisibleType {
   basicDrawerVisible: boolean;
   techDrawerVisible: boolean;
+  jobDrawerVisible:boolean
 }
+export type JobDataType=Array<JobDataItemType>

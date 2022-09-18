@@ -3,40 +3,22 @@ import { FormStaticType } from "../../types/static";
 import { Form, Drawer, Row, Col, Input } from "antd";
 interface BasicDrawerProps {
   onChange: (changedFields:FormStaticType)=>void;
-  setVisible: (str: "basicDrawerVisible") => void;
+  handleCloseDrawer: (str: "basicDrawerVisible") => void;
   visible: boolean;
   initialValues:FormStaticType
 }
 const BasicDrawer: FC<BasicDrawerProps> = memo(
-  ({ onChange, visible, setVisible,initialValues}) => {
+  ({ onChange, visible, handleCloseDrawer,initialValues}) => {
     const { Item } = Form;
     const { TextArea } = Input;
     const [form]=Form.useForm()
-    const rules = {
-      name: [{ required: true, message: "Please enter user name" }],
-      url: [{ required: true, message: "please enter url" }],
-      owner: [{ required: true, message: "Please select an owner" }],
-      type: [{ required: true, message: "Please choose the type" }],
-      approver: [{ required: true, message: "Please choose the approver" }],
-      dateTime: [
-        {
-          required: true,
-          message: "Please choose the dateTime",
-          type: "object",
-        },
-      ],
-      description: [
-        { required: true, message: "Please enter url description" },
-      ],
-    };
-
     const onClose = useCallback(() => {
-      setVisible("basicDrawerVisible");
-    }, [setVisible]);
+      handleCloseDrawer("basicDrawerVisible");
+    }, [handleCloseDrawer]);
     return (
       <>
         <Drawer
-          title="请输入你的基本信息"
+          title="基本信息"
           width="720"
           visible={visible}
           bodyStyle={{ paddingBottom: "80px" }}
@@ -59,7 +41,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
             <Row gutter={16}>
               <Col span="12">
                 <Item label="邮箱" name="email">
-                  <Input placeholder="请输入你的邮箱" />
+                  <Input placeholder="163邮箱比较正规" />
                 </Item>
               </Col>
               <Col span="12">
@@ -71,12 +53,12 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
             <Row gutter={16}>
               <Col span="12">
                 <Item label="毕业学校" name="school">
-                  <Input placeholder="请输入你的毕业学校" />
+                  <Input placeholder="985/211一定要写！" />
                 </Item>
               </Col>
               <Col span="12">
                 <Item label="专业" name="major">
-                  <Input placeholder="请输入你的专业" />
+                  <Input placeholder="非计算机相关专业可不填" />
                 </Item>
               </Col>
             </Row>
@@ -88,7 +70,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
               </Col>
               <Col span="12">
                 <Item label="期望薪资" name="salary">
-                  <Input placeholder="请输入你的期望薪资" />
+                  <Input placeholder="不填为面议" />
                 </Item>
               </Col>
             </Row>
@@ -99,22 +81,22 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
                 </Item>
               </Col>
               <Col span="12">
-                <Item label="github" name="github">
+                <Item label="Github" name="github">
                   <Input placeholder="请输入你的Github网址" />
                 </Item>
               </Col>
             </Row>
             <Row gutter={16}>
               <Col span="24">
-                <Item label="自我评价" name="description">
-                  <TextArea rows={4} placeholder="请输入自我评价" />
+                <Item label="自我评价" name="evaluation">
+                  <TextArea rows={4} placeholder="写行业相关的评价！" />
                 </Item>
               </Col>
             </Row>
             <Row gutter={16}>
               <Col span="24">
                 <Item label="荣誉奖励" name="reward">
-                  <TextArea rows={4} placeholder="请输入你获取的荣誉奖励" />
+                  <TextArea rows={4} placeholder="写行业相关的证书！" />
                 </Item>
               </Col>
             </Row>

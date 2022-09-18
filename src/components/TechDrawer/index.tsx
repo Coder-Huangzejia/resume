@@ -4,7 +4,7 @@ import { TechDataType } from "../../types/static";
 import "./index.css";
 interface TechDrawerProps {
   techData: TechDataType;
-  setVisible: (str: "techDrawerVisible") => void;
+  handleCloseDrawer: (str: "techDrawerVisible") => void;
   visible: boolean;
   onChooseList: (
     type: "tools" | "webgl" | "frame" | "list",
@@ -12,15 +12,15 @@ interface TechDrawerProps {
   ) => void;
 }
 const TechDrawer: FC<TechDrawerProps> = memo(
-  ({ techData, visible, setVisible, onChooseList }) => {
+  ({ techData, visible, handleCloseDrawer, onChooseList }) => {
     const { tools, webgl, frame, list } = techData;
     const onClose = useCallback(() => {
-      setVisible("techDrawerVisible");
-    }, [setVisible]);
+      handleCloseDrawer("techDrawerVisible");
+    }, [handleCloseDrawer]);
     return (
       <>
         <Drawer
-          title="选择你的技能"
+          title="选择你的技术栈"
           width="720"
           visible={visible}
           bodyStyle={{ paddingBottom: "80px" }}
