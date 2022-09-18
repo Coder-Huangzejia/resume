@@ -1,3 +1,4 @@
+import { MomentInput } from "moment";
 export interface FormStaticType {
   name: string;
   mobile: string;
@@ -9,8 +10,8 @@ export interface FormStaticType {
   blog: string;
   major: string;
   age: number;
-  evaluation:string;
-  reward:string
+  evaluation: string;
+  reward: string;
 }
 export interface TechDataItemType {
   name: string;
@@ -24,16 +25,21 @@ export interface TechDataType {
 }
 export interface JobDataItemType {
   companyName: string;
-  dueTime: string;
+  period: Array<MomentInput>;
   department: string;
   position: string;
-  jobDescription:string;
-  startTime:string;
-  dimission:boolean
+  jobDescription: string;
 }
 export interface DrawerVisibleType {
   basicDrawerVisible: boolean;
   techDrawerVisible: boolean;
-  jobDrawerVisible:boolean
+  jobDrawerVisible: boolean;
+  workDrawerVisible: boolean;
 }
-export type JobDataType=Array<JobDataItemType>
+export interface WorkDataItemType {
+  workName: string;
+  skill: string;
+  content: string;
+}
+export type JobDataType = Array<JobDataItemType>;
+export type WorkDataType = Array<WorkDataItemType>;

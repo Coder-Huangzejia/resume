@@ -2,16 +2,16 @@ import { FC, memo, useCallback } from "react";
 import { FormStaticType } from "../../types/static";
 import { Form, Drawer, Row, Col, Input } from "antd";
 interface BasicDrawerProps {
-  onChange: (changedFields:FormStaticType)=>void;
+  onChange: (changedFields: FormStaticType) => void;
   handleCloseDrawer: (str: "basicDrawerVisible") => void;
   visible: boolean;
-  initialValues:FormStaticType
+  initialValues: FormStaticType;
 }
 const BasicDrawer: FC<BasicDrawerProps> = memo(
-  ({ onChange, visible, handleCloseDrawer,initialValues}) => {
+  ({ onChange, visible, handleCloseDrawer, initialValues }) => {
     const { Item } = Form;
     const { TextArea } = Input;
-    const [form]=Form.useForm()
+    const [form] = Form.useForm();
     const onClose = useCallback(() => {
       handleCloseDrawer("basicDrawerVisible");
     }, [handleCloseDrawer]);
@@ -21,11 +21,17 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
           title="基本信息"
           width="720"
           visible={visible}
+          key="basicDrawer"
           bodyStyle={{ paddingBottom: "80px" }}
           footerStyle={{ textAlign: "right" }}
           onClose={onClose}
         >
-          <Form layout="vertical" form={form} initialValues={initialValues} onValuesChange={onChange}>
+          <Form
+            layout="vertical"
+            form={form}
+            initialValues={initialValues}
+            onValuesChange={onChange}
+          >
             <Row gutter={16}>
               <Col span="12">
                 <Item label="名字" name="name">

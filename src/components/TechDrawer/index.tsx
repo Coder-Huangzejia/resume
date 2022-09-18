@@ -23,13 +23,14 @@ const TechDrawer: FC<TechDrawerProps> = memo(
           title="选择你的技术栈"
           width="720"
           visible={visible}
+          key="techDrawer"
           bodyStyle={{ paddingBottom: "80px" }}
           footerStyle={{ textAlign: "right" }}
           onClose={onClose}
         >
           <div className="chooseList">
             {tools.map((v, i) => (
-              <div className="btn">
+              <div className="btn" key={i}>
                 <Button
                   type={v.select ? "primary" : "default"}
                   onClick={() => onChooseList("tools", i)}
@@ -39,7 +40,7 @@ const TechDrawer: FC<TechDrawerProps> = memo(
               </div>
             ))}
             {webgl.map((v, i) => (
-              <div className="btn">
+              <div className="btn" key={i}>
                 <Button
                   type={v.select ? "primary" : "default"}
                   onClick={() => onChooseList("webgl", i)}
@@ -49,7 +50,7 @@ const TechDrawer: FC<TechDrawerProps> = memo(
               </div>
             ))}
             {frame.map((v, i) => (
-              <div className="btn">
+              <div className="btn" key={i}>
                 <Button
                   type={v.select ? "primary" : "default"}
                   onClick={() => onChooseList("frame", i)}
@@ -59,7 +60,7 @@ const TechDrawer: FC<TechDrawerProps> = memo(
               </div>
             ))}
             {list.map((v, i) => (
-              <div className="btn">
+              <div className="btn" key={i}>
                 <Button
                   type={v.select ? "primary" : "default"}
                   onClick={() => onChooseList("list", i)}

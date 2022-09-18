@@ -1,39 +1,37 @@
 import { FC, memo, useCallback } from "react";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Drawer, Form, Input } from "antd";
-import RangePicker from "../components/RangePicker";
-import { jobPickTimeRange } from "../util/date";
-import { JobDataItemType, JobDataType } from "../types/static";
-interface JobDrawerProps {
-  handleCloseDrawer: (str: "jobDrawerVisible") => void;
+import { WorkDataItemType, WorkDataType } from "../../types/static";
+interface WorkDrawerProps {
+  handleCloseDrawer: (str: "workDrawerVisible") => void;
   visible: boolean;
-  initialValues: JobDataType;
-  onChange: (_: JobDataItemType, allValues: { job: JobDataType }) => void;
+  initialValues: WorkDataType;
+  onChange: (_: WorkDataItemType, allValues: { work: WorkDataType }) => void;
 }
-const JobDrawer: FC<JobDrawerProps> = memo(
+const WorkDrawer: FC<WorkDrawerProps> = memo(
   ({ visible, handleCloseDrawer, initialValues, onChange }) => {
     const onClose = useCallback(() => {
-      handleCloseDrawer("jobDrawerVisible");
+      handleCloseDrawer("workDrawerVisible");
     }, [handleCloseDrawer]);
     const { TextArea } = Input;
     const { Item, List } = Form;
     return (
       <>
         <Drawer
-          title="工作经历"
+          title="项目"
           width="720"
+          key="workDrawer"
           visible={visible}
-          key="jobDrawer"
           bodyStyle={{ paddingBottom: "80px" }}
           footerStyle={{ textAlign: "right" }}
           onClose={onClose}
         >
           <Form
             autoComplete="off"
-            initialValues={{ job: initialValues }}
+            initialValues={{ work: initialValues }}
             onValuesChange={onChange}
           >
-            <List name="job">
+            <List name="work">
               {(fields, { add, remove }) => (
                 <>
                   {fields.map(({ key, name, ...restField }) => (
@@ -47,55 +45,39 @@ const JobDrawer: FC<JobDrawerProps> = memo(
                     >
                       <Item
                         {...restField}
-                        name={[name, "companyName"]}
-                        label="公司名称"
+                        name={[name, "workName"]}
+                        label="项目名称"
                         rules={[
-                          { required: true, message: "请填写公司名称！" },
+                          { required: true, message: "请填写项目名称！" },
                         ]}
                       >
                         <Input
-                          placeholder="公司名称要写全名"
+                          placeholder="项目名称"
                           style={{ width: "288px" }}
                         />
                       </Item>
                       <Item
                         {...restField}
-                        name={[name, "period"]}
-                        label="工作时间"
-                        rules={[{ required: true, message: "请选择工作时间" }]}
+                        name={[name, "skill"]}
+                        label="项目技术"
+                        rules={[{ required: true, message: "请填写技术栈！" }]}
                       >
-                        <RangePicker
-                          placeholder={["入职时间", "离职时间"]}
-                          allowClear={true}
-                          ranges={jobPickTimeRange}
+                        <Input
+                          placeholder="技术栈"
+                          style={{ width: "288px" }}
                         />
                       </Item>
+
                       <Item
                         {...restField}
-                        name={[name, "department"]}
-                        label="所在部门"
-                        rules={[{ required: true, message: "请填写部门！" }]}
-                      >
-                        <Input placeholder="部门" style={{ width: "288px" }} />
-                      </Item>
-                      <Item
-                        {...restField}
-                        name={[name, "position"]}
-                        label="工作职位"
-                        rules={[{ required: true, message: "请填写职位！" }]}
-                      >
-                        <Input placeholder="职位" style={{ width: "288px" }} />
-                      </Item>
-                      <Item
-                        {...restField}
-                        name={[name, "jobDescription"]}
-                        label="工作职责"
+                        name={[name, "content"]}
+                        label="项目内容"
                         rules={[
-                          { required: true, message: "请填写工作职责！" },
+                          { required: true, message: "请填写项目内容！" },
                         ]}
                       >
                         <TextArea
-                          placeholder="描述你都做些啥"
+                          placeholder="描述一下项目"
                           style={{ minHeight: "100px" }}
                         />
                       </Item>
@@ -123,7 +105,7 @@ const JobDrawer: FC<JobDrawerProps> = memo(
                       block
                       icon={<PlusOutlined />}
                     >
-                      添加工作经历
+                      添加工作项目或作品
                     </Button>
                   </Item>
                 </>
@@ -135,4 +117,4 @@ const JobDrawer: FC<JobDrawerProps> = memo(
     );
   }
 );
-export default JobDrawer;
+export default WorkDrawer;
