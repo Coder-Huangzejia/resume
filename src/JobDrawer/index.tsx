@@ -4,6 +4,7 @@ import { Button, Drawer, Form, Input } from "antd";
 import RangePicker from "../components/RangePicker";
 import { jobPickTimeRange } from "../util/date";
 import { JobDataItemType, JobDataType } from "../types/static";
+import moment, { MomentInput } from "moment";
 interface JobDrawerProps {
   handleCloseDrawer: (str: "jobDrawerVisible") => void;
   visible: boolean;
@@ -17,6 +18,10 @@ const JobDrawer: FC<JobDrawerProps> = memo(
     }, [handleCloseDrawer]);
     const { TextArea } = Input;
     const { Item, List } = Form;
+    const disabledDate = useCallback(
+      (current: MomentInput) => current! > moment().endOf("day"),
+      []
+    );
     return (
       <>
         <Drawer
@@ -68,6 +73,7 @@ const JobDrawer: FC<JobDrawerProps> = memo(
                           placeholder={["入职时间", "离职时间"]}
                           allowClear={true}
                           ranges={jobPickTimeRange}
+                          disabledDate={disabledDate}
                         />
                       </Item>
                       <Item
