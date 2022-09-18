@@ -20,8 +20,8 @@ export default function App() {
     major: "计算机科学与技术（非相关专业可不填）",
     age: 25,
     salary: "25k（不填为面议）",
-    blog: "https://juejin.cn/user/2419405862219277(没有可不填)",
-    github: "https://github.com/3055859479(没有可不填)",
+    blog: "https://juejin.cn/user/2419405862219277",
+    github: "https://github.com/3055859479",
   });
 
   const [techData, setTechData] = useState<TechDataType>({
@@ -155,6 +155,9 @@ export default function App() {
   }, []);
 
   const save = () => {};
+  const onChange=useCallback((changedFields:FormStaticType)=>{
+    setFormBasic(pre=>({...pre,...changedFields}))
+  },[])
   return (
     <>
       <Resume
@@ -164,7 +167,8 @@ export default function App() {
       />
       <BasicDrawer
         visible={drawerVisible.basicDrawerVisible}
-        form={formBasic}
+        onChange={onChange}
+        initialValues={formBasic}
         setVisible={handleCloseDrawer}
       />
       <TechDrawer

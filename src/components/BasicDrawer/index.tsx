@@ -2,14 +2,16 @@ import { FC, memo, useCallback } from "react";
 import { FormStaticType } from "../../types/static";
 import { Form, Drawer, Row, Col, Input } from "antd";
 interface BasicDrawerProps {
-  form: FormStaticType;
+  onChange: (changedFields:FormStaticType)=>void;
   setVisible: (str: "basicDrawerVisible") => void;
   visible: boolean;
+  initialValues:FormStaticType
 }
 const BasicDrawer: FC<BasicDrawerProps> = memo(
-  ({ form, visible, setVisible }) => {
+  ({ onChange, visible, setVisible,initialValues}) => {
     const { Item } = Form;
     const { TextArea } = Input;
+    const [form]=Form.useForm()
     const rules = {
       name: [{ required: true, message: "Please enter user name" }],
       url: [{ required: true, message: "please enter url" }],
@@ -41,7 +43,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
           footerStyle={{ textAlign: "right" }}
           onClose={onClose}
         >
-          <Form layout="vertical">
+          <Form layout="vertical" form={form} initialValues={initialValues} onValuesChange={onChange}>
             <Row gutter={16}>
               <Col span="12">
                 <Item label="名字" name="name">

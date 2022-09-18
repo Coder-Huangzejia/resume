@@ -120,10 +120,10 @@ const Resume: FC<ResumeProps> = memo(({ techData, formData, setVisible }) => {
         <div className="detail-list">
           <div className="company">
             <h2>
-              XXX网络科技有限公司 <span>（2021年10月-2022年2月）</span>
+              XXX网络科技有限公司 <span>（2020年10月-2022年5月）</span>
             </h2>
             <span className="tools">
-              部门： 技术部 | 职位：Web前端开发工程师
+              部门： 平台研发部-大前端部 | 职位：Web前端开发工程师
             </span>
 
             <span className="project-title">工作描述</span>
