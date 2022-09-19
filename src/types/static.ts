@@ -1,5 +1,19 @@
 import { MomentInput } from "moment";
-export interface FormStaticType {
+
+
+export interface educationOption {
+  JuniorCollege:string;
+  Undergraduate:string;
+  SuperUndergraduate:string;
+  Master:string;
+}
+export const educationSelect:educationOption ={
+  'JuniorCollege':'大专',
+  'Undergraduate':'本科',
+  'SuperUndergraduate':'985全日制本科',
+  'Master':'研究生',
+}
+export interface BasicDataType {
   name: string;
   mobile: string;
   email: string;
@@ -12,6 +26,7 @@ export interface FormStaticType {
   age: number;
   evaluation: string;
   reward: string;
+  education:keyof educationOption
 }
 export interface TechDataItemType {
   name: string;

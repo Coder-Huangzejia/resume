@@ -1,16 +1,17 @@
 import { FC, memo, useCallback } from "react";
-import { FormStaticType } from "../../types/static";
-import { Form, Drawer, Row, Col, Input } from "antd";
+import { BasicDataType } from "../../types/static";
+import { Form, Drawer, Row, Col, Input, Select } from "antd";
 interface BasicDrawerProps {
-  onChange: (changedFields: FormStaticType) => void;
+  onChange: (changedFields: BasicDataType) => void;
   handleCloseDrawer: (str: "basicDrawerVisible") => void;
   visible: boolean;
-  initialValues: FormStaticType;
+  initialValues: BasicDataType;
 }
 const BasicDrawer: FC<BasicDrawerProps> = memo(
   ({ onChange, visible, handleCloseDrawer, initialValues }) => {
     const { Item } = Form;
     const { TextArea } = Input;
+    const { Option } = Select;
     const [form] = Form.useForm();
     const onClose = useCallback(() => {
       handleCloseDrawer("basicDrawerVisible");
@@ -19,10 +20,11 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
       <>
         <Drawer
           title="基本信息"
-          width={720}
+          width={'fit-content'}
+          closable={false}
           visible={visible}
           key="basicDrawer"
-          bodyStyle={{ paddingBottom: "80px" }}
+          bodyStyle={{ paddingBottom: "80px",overflow: 'hidden' }}
           footerStyle={{ textAlign: "right" }}
           onClose={onClose}
         >
@@ -39,24 +41,19 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
                 </Item>
               </Col>
               <Col span="12">
-                <Item label="联系方式" name="mobile">
-                  <Input placeholder="请输入你的手机" />
+                <Item label="学历" name="education">
+                  <Select placeholder="985、211记得加粗" allowClear>
+                    <Option value="JuniorCollege">大专</Option>
+                    <Option value="Undergraduate">本科</Option>
+                    <Option value="SuperUndergraduate">985全日制本科</Option>
+                    <Option value="Master">研究生</Option>
+                  </Select>
                 </Item>
               </Col>
+             
             </Row>
             <Row gutter={16}>
-              <Col span="12">
-                <Item label="邮箱" name="email">
-                  <Input placeholder="163邮箱比较正规" />
-                </Item>
-              </Col>
-              <Col span="12">
-                <Item label="前端工作经验" name="frontEndTime">
-                  <Input placeholder="时间：3年" />
-                </Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
+              
               <Col span="12">
                 <Item label="毕业学校" name="school">
                   <Input placeholder="985/211一定要写！" />
@@ -67,6 +64,20 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
                   <Input placeholder="非计算机相关专业可不填" />
                 </Item>
               </Col>
+             
+            </Row>
+            <Row gutter={16}>
+            <Col span="12">
+                <Item label="联系方式" name="mobile">
+                  <Input placeholder="请输入你的手机" />
+                </Item>
+              </Col>
+            <Col span="12">
+                <Item label="邮箱" name="email">
+                  <Input placeholder="163邮箱比较正规" />
+                </Item>
+              </Col>
+             
             </Row>
             <Row gutter={16}>
               <Col span="12">
@@ -77,6 +88,11 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
               <Col span="12">
                 <Item label="期望薪资" name="salary">
                   <Input placeholder="不填为面议" />
+                </Item>
+              </Col>
+              <Col span="12">
+                <Item label="工作经验" name="frontEndTime">
+                  <Input placeholder="时间：3年" />
                 </Item>
               </Col>
             </Row>
@@ -95,7 +111,7 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
             <Row gutter={16}>
               <Col span="24">
                 <Item label="自我评价" name="evaluation">
-                  <TextArea rows={4} placeholder="写行业相关的评价！" />
+                  <TextArea rows={6} placeholder="写行业相关的评价！" />
                 </Item>
               </Col>
             </Row>

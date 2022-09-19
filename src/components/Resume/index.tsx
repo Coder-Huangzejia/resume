@@ -1,17 +1,18 @@
 import { FC, memo, useMemo } from "react";
 import {
   DrawerVisibleType,
-  FormStaticType,
+  BasicDataType,
   JobDataType,
   TechDataType,
   WorkDataType,
+  educationSelect
 } from "../../types/static";
 import { formatJobPeriod } from "../../util/date";
 import "./index.css";
 
 interface ResumeProps {
   techData: TechDataType;
-  basicData: FormStaticType;
+  basicData: BasicDataType;
   handleOpenDrawer: (name: keyof DrawerVisibleType) => void;
   jobData: JobDataType;
   workData: WorkDataType;
@@ -31,6 +32,8 @@ const Resume: FC<ResumeProps> = memo(
       major,
       evaluation,
       reward,
+      age,
+      education
     } = basicData;
     const { webgl, frame } = techData;
     const toolStr = useMemo(() => {
@@ -52,6 +55,7 @@ const Resume: FC<ResumeProps> = memo(
             <div className="header-left">
               <ul>
                 <li>联系方式： {mobile}</li>
+                <li>年龄： {age}</li>
                 <li>邮箱： {email}</li>
                 <li>毕业学校： {school}</li>
               </ul>
@@ -59,6 +63,7 @@ const Resume: FC<ResumeProps> = memo(
             <div className="header-right">
               <ul>
                 <li>前端工作经验： {frontEndTime}</li>
+                <li>学历： {educationSelect[education]}</li>
                 <li>期望薪资： {salary || "面议"}</li>
                 <li style={{ display: major ? "list-item" : "none" }}>
                   专业： {major}

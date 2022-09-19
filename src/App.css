@@ -6,11 +6,18 @@
   top: 2%;
   left: 5%;
 }
-.download-btn {
+.operation-btn {
   width: fit-content;
   height: 35px;
 }
-.save-btn {
-  width: fit-content;
-  height: 35px;
+.ant-drawer-header{
+  border-bottom:none;
+  padding: 9px 24px;
+}
+.ant-drawer-close{
+  display: none;
+}
+.ant-drawer-title{
+  font-weight: 600;
+  font-size: 17px;
 }
