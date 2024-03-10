@@ -70,7 +70,8 @@ export default function transitionTimeZone({
         transitionDate = moment(Number(date)).format(formatDetail);
     } else {
         // 日期时间字符串或utc时间
-        if (!(date as string).includes('T')) {
+        console.log(date)
+        if (!(date as string)?.includes('T')) {
             // 2021-03-04 14:30:33
             // 日期时间字符串 东-小时，西+小时 默认后台返回的是东8区的
             // const dateTmp = (date as string).replace(/-/g, '/'); // 兼容ios

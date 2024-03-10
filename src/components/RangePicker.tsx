@@ -16,7 +16,7 @@ export default function RangePicker(props: RangePickerProps) {
     useEffect(() => {
         if (shouldBlur.current) {
             const refCurrent = ref.current;
-            let timer = setTimeout(() => {
+            const timer = setTimeout(() => {
                 refCurrent.blur();
                 shouldBlur.current = false;
             });
@@ -32,17 +32,6 @@ export default function RangePicker(props: RangePickerProps) {
             open={open}
             onOpenChange={setOpen}
             ref={ref}
-            onCalendarChange={(values, strs, { range }) => {
-                if (values == null || values[0] == null || values[1] == null) {
-                    return;
-                }
-                const [ start, end ] = values;
-                if (start.isSameOrBefore(end)) {
-                    setOpen(false);
-                    shouldBlur.current = true;
-                    return;
-                }
-            }}
         />
     );
 }

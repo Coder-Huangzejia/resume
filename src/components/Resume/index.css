@@ -5,11 +5,10 @@
 }
 #top a {
   color: #fff;
-  text-decoration: none;
   line-height: 2.3em;
+  text-decoration: underline;
 }
 #top a .top-download {
-  text-decoration: none;
   display: block;
   margin: auto;
   text-align: center;
@@ -19,7 +18,7 @@
 }
 #resume-wrapper a {
   color: #42a5f5;
-  text-decoration: none;
+  text-decoration: underline;
 }
 .header {
   margin-top: 0.5em;
@@ -71,11 +70,6 @@
   font-size: 1.1rem;
   display: block;
   padding-left: 0.5em;
-  background: url("../../assets/imgs/li_icon.png") no-repeat;
-  background-position-y: 0.4em;
-  background-position-x: 0.35em;
-  -webkit-background-size: 0.6em;
-  background-size: 0.6em;
 }
 .work-experience .company span {
   display: block;
@@ -93,16 +87,12 @@
 .open-source .source-name {
   font-size: 1.1rem;
   font-weight: 600;
+  color: #0066cc;
 }
 .open-source .project-title {
-  font-size: 1.1rem;
+  font-size: 17px;
   display: block;
   padding-left: 1.5em;
-  background: url("../../assets/imgs/li_icon.png") no-repeat;
-  background-position-y: 0.4em;
-  background-position-x: 0.35em;
-  -webkit-background-size: 0.6em;
-  background-size: 0.6em;
 }
 .honor-reward {
   position: relative;
@@ -115,7 +105,7 @@
 .long-line {
   position: absolute;
   display: block;
-  width: 690px;
+  width: 765px;
   height: 2px;
   top: 32px;
   left: 58px;
@@ -138,8 +128,16 @@
 }
 .detail-list {
   line-height: 1.6;
-  padding: 50px 60px 0px;
+  padding: 50px 50px 0;
   white-space: pre-line;
+}
+
+ul li {
+  list-style: none;
+}
+ul li:before {
+  content: "🌟";
+  margin-right: 5px;
 }
 #top {
   position: fixed;
@@ -172,35 +170,74 @@
   font-size: 14px;
 }
 #resume-wrapper {
-  width: 800px;
+  width: 830px;
   min-height: 500px;
   background: #fff;
   margin: 70px auto;
+  font-family: math;
 }
 .header {
-  width: 690px;
+  width: 770px;
   margin-left: 50px;
 }
 .header .header-title {
+  color: #1a73e8;
   padding-top: 34px;
 }
 .header .header-title .author-name {
-  font-size: 28px;
+  font-size: 30px;
 }
+
 .header .header-title .author-intro {
-  font-size: 16px;
+  font-size: 19px;
+  margin-left: 16em;
 }
 .header .header-list .header-left {
   float: left;
 }
 .header .header-list .header-left ul {
-  padding-left: 10px;
+  padding-left: 0;
+}
+.header .header-list ul p {
+  color: #4472c4;
+  font-weight: bold;
+  font-size: 17px;
+}
+.header .header-list ul p span {
+  color: #000;
+  font-weight: normal;
+  font-size: 17px;
+  &.blog-text {
+    color: #42a5f5;
+    text-decoration: underline;
+  }
+}
+.project-item {
+  margin-top: 20px;
+  border-bottom: 1px solid #f1f1f1;
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+  & .project-skill {
+    display: flex;
+    margin-left: 15px;
+    & .ant-tag {
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      display: flex;
+      font-family: ui-monospace;
+    }
+  }
 }
 .header .header-list .header-right {
   float: right;
 }
 .header .header-list ul {
-  line-height: 1.7;
+  line-height: 1;
 }
 .person-info {
   position: relative;
@@ -245,6 +282,7 @@
   font-size: 18px;
   margin: 0;
   font-weight: 900;
+  color: #0066cc;
 }
 .work-experience .detail-list .company .tools {
   display: block;
@@ -260,6 +298,7 @@
 }
 .work-experience .detail-list .company .project-intro {
   margin: 2px 0 8px 0;
+  font-size: 16px;
 }
 .work-experience .detail-list .company .project-intro p {
   margin-top: 0;
@@ -280,6 +319,9 @@
 .open-source .icon {
   background: url("../../assets/imgs/open_source_icon.png") no-repeat;
 }
+.open-source .detail-list {
+  padding-top: 30px;
+}
 .open-source .detail-list ul {
   padding: 0;
   margin: 0;
@@ -289,11 +331,12 @@
   font-size: 19px;
 }
 .open-source .project-title {
-  color: #333;
-  font-weight: bold;
+  color: #0066cc;
 }
 .open-source .project-intro {
   margin-left: 25px;
+  display: block;
+  text-indent: 1.5em;
 }
 .honor-eva {
   min-height: fit-content;

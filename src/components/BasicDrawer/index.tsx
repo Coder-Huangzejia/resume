@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from "react";
+import React,{ FC, memo, useCallback } from "react";
 import { BasicDataType } from "../../types/static";
 import { Form, Drawer, Row, Col, Input, Select } from "antd";
 interface BasicDrawerProps {
@@ -17,15 +17,13 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
       handleCloseDrawer("basicDrawerVisible");
     }, [handleCloseDrawer]);
     return (
-      <>
         <Drawer
           title="基本信息"
           width={'fit-content'}
           closable={false}
-          visible={visible}
+          open={visible}
           key="basicDrawer"
-          bodyStyle={{ paddingBottom: "80px",overflow: 'hidden' }}
-          footerStyle={{ textAlign: "right" }}
+          styles={{body:{ paddingBottom: "80px",overflow: 'hidden' },footer:{textAlign: "right"}}}
           onClose={onClose}
         >
           <Form
@@ -124,7 +122,6 @@ const BasicDrawer: FC<BasicDrawerProps> = memo(
             </Row>
           </Form>
         </Drawer>
-      </>
     );
   }
 );

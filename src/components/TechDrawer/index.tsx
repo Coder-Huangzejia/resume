@@ -1,5 +1,5 @@
 import { Button, Drawer } from "antd";
-import { FC, memo, useCallback } from "react";
+import React ,{ FC, memo, useCallback } from "react";
 import { TechDataType } from "../../types/static";
 import "./index.css";
 interface TechDrawerProps {
@@ -22,10 +22,9 @@ const TechDrawer: FC<TechDrawerProps> = memo(
         <Drawer
           title="选择你的技术栈"
           width={720}
-          visible={visible}
+          open={visible}
           key="techDrawer"
-          bodyStyle={{ paddingBottom: "80px" }}
-          footerStyle={{ textAlign: "right" }}
+          styles={{body:{ paddingBottom: "80px" },footer:{textAlign: "right"}}}
           onClose={onClose}
         >
           <div className="chooseList">

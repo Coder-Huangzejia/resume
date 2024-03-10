@@ -1,10 +1,11 @@
-import { FC, memo, useCallback } from "react";
+import React,{ FC, memo, useCallback }  from "react";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Drawer, Form, Input } from "antd";
-import RangePicker from "../components/RangePicker";
-import { jobPickTimeRange } from "../util/date";
-import { JobDataItemType, JobDataType } from "../types/static";
-import moment, { MomentInput } from "moment";
+import RangePicker from "../RangePicker";
+import { jobPickTimeRange } from "../../util/date";
+import { JobDataItemType, JobDataType } from "../../types/static";
+import moment from "moment";
+import dayjs from 'dayjs'
 interface JobDrawerProps {
   handleCloseDrawer: (str: "jobDrawerVisible") => void;
   visible: boolean;
@@ -19,7 +20,7 @@ const JobDrawer: FC<JobDrawerProps> = memo(
     const { TextArea } = Input;
     const { Item, List } = Form;
     const disabledDate = useCallback(
-      (current: MomentInput) => current! > moment().endOf("day"),
+      (current:dayjs.Dayjs) => current! > moment().endOf("day"),
       []
     );
     return (
@@ -27,10 +28,9 @@ const JobDrawer: FC<JobDrawerProps> = memo(
         <Drawer
           title="工作经历"
           width={720}
-          visible={visible}
+          open={visible}
           key="jobDrawer"
-          bodyStyle={{ paddingBottom: "80px" }}
-          footerStyle={{ textAlign: "right" }}
+          styles={{body:{ paddingBottom: "80px",overflow: 'hidden' },footer:{textAlign: "right"}}}
           onClose={onClose}
         >
           <Form
@@ -72,7 +72,7 @@ const JobDrawer: FC<JobDrawerProps> = memo(
                         <RangePicker
                           placeholder={["入职时间", "离职时间"]}
                           allowClear={true}
-                          ranges={jobPickTimeRange}
+                          presets={jobPickTimeRange}
                           disabledDate={disabledDate}
                         />
                       </Item>

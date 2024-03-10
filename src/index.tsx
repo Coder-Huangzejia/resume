@@ -1,9 +1,8 @@
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-
+import './index.scss';
+import 'antd/dist/reset.css' 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <App />
 );
-reportWebVitals();

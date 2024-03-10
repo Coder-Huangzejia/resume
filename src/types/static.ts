@@ -1,18 +1,17 @@
-import { MomentInput } from "moment";
-
+import dayjs from "dayjs";
 
 export interface educationOption {
-  JuniorCollege:string;
-  Undergraduate:string;
-  SuperUndergraduate:string;
-  Master:string;
+  JuniorCollege: string;
+  Undergraduate: string;
+  SuperUndergraduate: string;
+  Master: string;
 }
-export const educationSelect:educationOption ={
-  'JuniorCollege':'大专',
-  'Undergraduate':'本科',
-  'SuperUndergraduate':'985全日制本科',
-  'Master':'研究生',
-}
+export const educationSelect: educationOption = {
+  JuniorCollege: "大专",
+  Undergraduate: "本科",
+  SuperUndergraduate: "985全日制本科",
+  Master: "研究生",
+};
 export interface BasicDataType {
   name: string;
   mobile: string;
@@ -26,7 +25,7 @@ export interface BasicDataType {
   age: number;
   evaluation: string;
   reward: string;
-  education:keyof educationOption
+  education: keyof educationOption;
 }
 export interface TechDataItemType {
   name: string;
@@ -40,7 +39,7 @@ export interface TechDataType {
 }
 export interface JobDataItemType {
   companyName: string;
-  period: Array<MomentInput>;
+  period: Array<dayjs.Dayjs>;
   department: string;
   position: string;
   jobDescription: string;
@@ -55,6 +54,7 @@ export interface WorkDataItemType {
   workName: string;
   skill: string;
   content: string;
+  address: string;
 }
 export type JobDataType = Array<JobDataItemType>;
 export type WorkDataType = Array<WorkDataItemType>;

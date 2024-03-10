@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from "react";
+import React,{ FC, memo, useCallback } from "react";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Drawer, Form, Input } from "antd";
 import { WorkDataItemType, WorkDataType } from "../../types/static";
@@ -21,15 +21,15 @@ const WorkDrawer: FC<WorkDrawerProps> = memo(
           title="工作项目"
           width={720}
           key="workDrawer"
-          visible={visible}
-          bodyStyle={{ paddingBottom: "80px" }}
-          footerStyle={{ textAlign: "right" }}
+          open={visible}
+          styles={{body:{ paddingBottom: "80px" },footer:{textAlign: "right"}}}
           onClose={onClose}
         >
           <Form
             autoComplete="off"
             initialValues={{ work: initialValues }}
             onValuesChange={onChange}
+            labelCol={{ span: 3 }}
           >
             <List name="work">
               {(fields, { add, remove }) => (
@@ -71,7 +71,7 @@ const WorkDrawer: FC<WorkDrawerProps> = memo(
                       <Item
                         {...restField}
                         name={[name, "content"]}
-                        label="项目内容"
+                        label="主要业务"
                         rules={[
                           { required: true, message: "请填写项目内容！" },
                         ]}
@@ -79,6 +79,16 @@ const WorkDrawer: FC<WorkDrawerProps> = memo(
                         <TextArea
                           placeholder="描述一下项目"
                           style={{ minHeight: "100px" }}
+                        />
+                      </Item>
+                      <Item
+                       {...restField}
+                       name={[name, "address"]}
+                       label="线上地址"
+                      >
+                      <Input
+                          placeholder="有的话可以提供一下线上演示网址"
+                          style={{ width: "288px" }}
                         />
                       </Item>
                       <Button

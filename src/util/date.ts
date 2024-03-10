@@ -1,7 +1,9 @@
 import moment, { Moment, MomentInput } from "moment";
 import transitionTimeZone from "./transitionTimeZone";
+import dayjs from "dayjs";
 
-export function formatJobPeriod(arr: Array<MomentInput>) {
+export function formatJobPeriod(arr: Array<any>) {
+  console.log(arr);
   return arr
     ? `${simpleMonth(arr[0])} - ${
         moment().diff(arr[1], "days") ? simpleMonth(arr[1]) : "至今"
@@ -79,14 +81,14 @@ export const quickPickTimeRange = {
   最近三年: [moment().subtract(3, "year"), moment()],
   最近五年: [moment().subtract(5, "year"), moment()],
 } as any;
-export const jobPickTimeRange = {
-  三个月: [moment().subtract(3, "month"), moment()],
-  半年: [moment().subtract(6, "month"), moment()],
-  一年: [moment().subtract(1, "year"), moment()],
-  两年: [moment().subtract(2, "year"), moment()],
-  三年: [moment().subtract(3, "year"), moment()],
-  五年: [moment().subtract(5, "year"), moment()],
-} as any;
+export const jobPickTimeRange = [
+  { label: "三个月", value: [dayjs().subtract(3, "month"), dayjs()] },
+  { label: "半年", value: [dayjs().subtract(6, "month"), dayjs()] },
+  { label: "一年", value: [dayjs().subtract(1, "year"), dayjs()] },
+  { label: "两年", value: [dayjs().subtract(2, "year"), dayjs()] },
+  { label: "三年", value: [dayjs().subtract(3, "year"), dayjs()] },
+  { label: "五年", value: [dayjs().subtract(5, "year"), dayjs()] },
+] as any;
 
 export const quickFuturePickTimeRange = {
   今天: [moment().startOf("day"), moment().endOf("day")],

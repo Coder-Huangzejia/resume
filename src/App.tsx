@@ -1,5 +1,5 @@
 import { Button, ConfigProvider } from "antd";
-import { useCallback, useState } from "react";
+import React ,{ useCallback, useState } from "react";
 import BasicDrawer from "./components/BasicDrawer";
 import Resume from "./components/Resume/index";
 import TechDrawer from "./components/TechDrawer";
@@ -13,14 +13,13 @@ import {
   WorkDataType,
 } from "./types/static";
 import downloadPDF from "./util/html2pdf";
-import "./App.css";
-import JobDrawer from "./JobDrawer";
-import "moment/locale/zh-cn";
-import locale from "antd/lib/locale/zh_CN";
+import JobDrawer from "./components/JobDrawer";
+import "dayjs/locale/zh-cn";
+import locale from "antd/locale/zh_CN";
 import { cloneDeep } from "lodash";
 import WorkDrawer from "./components/WorkDrawer";
 import { initBasicData, initJobData, initTechData, initWorkData } from "./mock/mock";
-import moment from "moment";
+import  dayjs from 'dayjs'
 export default function App() {
   const [basicData, setBasicData] = useState<BasicDataType>(() =>
     localStorage.getItem("basicData")
@@ -33,7 +32,7 @@ export default function App() {
     ? JSON.parse(localStorage.getItem("techData")!)
     : initTechData);
   const [jobData, setJobData] = useState<JobDataType>(()=>localStorage.getItem("jobData")
-  ? JSON.parse(localStorage.getItem("jobData")!).map((v:JobDataItemType)=>({...v,period:v.period.map(k=>moment(k))}))
+  ? JSON.parse(localStorage.getItem("jobData")!).map((v:JobDataItemType)=>({...v,period:v.period.map(k=>dayjs(k,'YYYY-MM-DD'))}))
   : initJobData);
   const [workData, setWorkData] = useState<WorkDataType>(()=>localStorage.getItem("workData")
   ? JSON.parse(localStorage.getItem("workData")!)
@@ -82,6 +81,7 @@ export default function App() {
         workName: v.workName,
         skill: v.skill,
         content: v.content,
+        address:v.address
       }));
       setWorkData(cloneDeep([...ret]));
     },
@@ -141,10 +141,13 @@ export default function App() {
       />
       <div className="operation-wrapper">
       <Button type="link" shape="default" className="operation-btn" onClick={reset}>
-          重置简历
+          重置
         </Button>
         <Button type="link" shape="default" className="operation-btn" onClick={save}>
-          保存简历
+          保存
+        </Button>
+        <Button type="link" shape="default" className="operation-btn" onClick={()=>{}}>
+          预览
         </Button>
         <Button
           type="link"
@@ -152,7 +155,7 @@ export default function App() {
           className="operation-btn"
           onClick={exportPDF}
         >
-          生成简历
+          下载PDF
         </Button>
       </div>
     </ConfigProvider>
