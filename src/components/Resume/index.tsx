@@ -45,7 +45,7 @@ const Resume: FC<ResumeProps> = memo(
         >
           <div className="header-title">
             <span className="author-name">{name}</span>
-            <span className="author-intro">求职意向：web前端开发/全栈开发</span>
+            <span className="author-intro">求职意向：web前端开发</span>
           </div>
           <div className="header-list">
             <div className="header-left">

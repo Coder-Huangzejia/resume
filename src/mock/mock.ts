@@ -1,19 +1,19 @@
 import { BasicDataType } from "../types/static";
 export const initBasicData: BasicDataType = {
-  name: "一泽今天写bug了吗",
+  name: "coder huang",
   mobile: "123456789",
-  email: "3055859479@qq.com",
+  email: "123456@qq.com",
   frontEndTime: "2年",
-  school: "中南大学",
+  school: "清华大学",
   major: "计算机科学与技术",
   age: 25,
   salary: "面议",
-  blog: "https://juejin.cn/user/2419405862219277",
-  github: "https://github.com/Coder-Huangzejia",
+  blog: "博客地址",
+  github: "github地址",
   education: "SuperUndergraduate",
   reward: "1. 大学英语四级/六级证书\n2. 高级软件设计师（软考证书）\n3. PAT证书",
   evaluation:
-    "1. 注重代码质量，有代码洁癖\n2. 在保证一定工作效率的前提下不介意加班\n3. 良好的语言沟通能力，能够积极主动交流以便快速解决问题\n4. 对前端领域的知识有持续学习的动力，注重自身技术的提升\n",
+    "1. 必不加班\n2. 哈哈哈哈\n3. 从不沟通\n4. 对前端没兴趣\n",
 };
 
 export const initTechData = {
